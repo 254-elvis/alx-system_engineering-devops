@@ -16,11 +16,22 @@ erver {
 
 
         location /airbnb-onepage/ {
-                proxy_pass http://localhost:5000;
+                proxy_pass http://localhost:5001;
         }
+
+        location /airbnb-dynamic/number_odd_or_even/ {
+                include proxy_params;
+                proxy_pass http://0.0.0.0:5001/number_odd_or_even/;
+        }
+
+        location /api/ {
+		        include proxy_params;
+		        proxy_pass http://0.0.0.0:5002/api/;
+	    }
 
         location = /404.html {
                 root /var/www/error/;
                 internal;
         }
 }
+u
